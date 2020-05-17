@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #424242;
+}
+
+
+.background-lightgray {
+  background-color :#F5F5F5;
+}
+
+.background-darkgray {
+  background-color :darkgray;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #424242;
+  border-color: #424242;
+}
+
+.margin-top{
+  margin-top: 80px;
+}
+
+table {
+  width: 100%;
+}
+
+
+.mat-row:nth-child(even){
+  background-color:lightgray;
+  }
+.mat-row:nth-child(odd){
+  background-color:white;
+  }
+.mat-cell{
+    color: black;
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
