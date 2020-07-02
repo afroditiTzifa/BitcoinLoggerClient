@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IDtoData} from '../dto-data';
 import { LiveDataService } from './live-data.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { Globals } from '../globals';
 
 @Component({
   templateUrl: './live-data.component.html',
@@ -9,12 +10,11 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class LiveDataComponent implements OnInit {
    
-  errorMessage: string;
   liveData: IDtoData[];
   displayedColumns: string[] = ['source', 'price', 'timestamp'];
   dataSource  = new MatTableDataSource(this.liveData);
 
-  constructor(private srv: LiveDataService) { } 
+  constructor(private srv: LiveDataService, private glb:Globals) { } 
 
 
   ngOnInit()
@@ -23,23 +23,19 @@ export class LiveDataComponent implements OnInit {
     this.srv.getLiveData().subscribe(
       {
         next:response=> this.liveData=response, 
-        error: err=>this.errorMessage=err
+        error: err=>console.log(err)
        }
       ); 
   }
 
 
-  onClick(sourceId: number){
-    /*
-    this.srv.SaveHistoryData(sourceId).subscribe(
+  onClick(row: IDtoData){
+    this.srv.saveHistoryData(row, this.glb.userid).subscribe(
         {
-          next:response=> {this.bitcoinPrice=response;  
-                           let fetchedData ="price: ".concat(this.bitcoinPrice.price.toFixed(2).toString()).concat(" ,timestamp: ").concat(this.bitcoinPrice.timestamp.toString());
-                           this.bitcoinSources.find(x => x.id === sourceId).fetchedData = fetchedData;}, 
-          error: err=>this.errorMessage=err
+          error: err=>console.log(err)
         }
         );
-        */
+        
 
     
 

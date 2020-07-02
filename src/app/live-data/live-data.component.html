@@ -1,7 +1,6 @@
 
 
 <div class="container-fluid">
-  <!--<h1>Sources</h1>  -->
   <div class="row mt-3 form-group">
     <div class="col-md-2">Source</div>
     <div class="col-md-2">Price</div>
@@ -10,8 +9,9 @@
   <div class="row mt-3 form-group" *ngFor="let row of liveData">
     <div class="col-md-2">{{ row.source }}</div>
     <div class="col-md-2">{{ row.price }}</div>
-    <div class="col-md-3"><button class="btn-primary" (click)="onClick(row.sourceId)" >Save To History</button></div>    
+    <div class="col-md-3"><button class="btn-primary" (click)="onClick(row)" >Save To History</button></div>    
   </div>
+
 
 
 

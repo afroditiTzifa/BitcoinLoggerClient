@@ -1,13 +1,15 @@
 <div class="container-fluid">
     <p>
-    Welcome to my new web platform that fetches Bitcoin price (BTC/USD) from multiple sources and presents them to the user.
-    <br/>
-    Each bitcoin entry has a price and a timestamp. 
-    </p>
-    <p>
-    Two BTC/USD price sources has been used.
-    <br/>1. Bitstamp : https://www.bitstamp.net/api/ticker/ 
-    <br/>2. GDAX : https://api.gdax.com/products/BTC-USD/ticker/ 
+        Bitcoin is a cryptocurrency. It is a decentralized digital currency without a central bank or single administrator that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries.
+        Transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain. Bitcoin was invented in 2008 by an unknown person or group of people using the name Satoshi Nakamoto and started in 2009 when its source code was released as open-source software.
     </p>
 
+    <p>
+      <span *ngIf="this.glb.userid <= 0">
+        Please  <button style='font-size:24px'><a class='fas fa-user' [routerLink]="['/login']">Login</a></button> to acess 
+      </span>
+      <span *ngIf="this.glb.userid > 0">Acess </span>
+       the most accurate Bitcoin real time price by two popular crypto exchanges; Bitstamp and GDAX.  
+   </p>
+ 
 </div>

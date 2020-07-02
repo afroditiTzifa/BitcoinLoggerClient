@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError} from 'rxjs/operators';
 import { IDtoData } from '../dto-data';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,12 +16,19 @@ export class LiveDataService {
 
   
   getLiveData(): Observable<IDtoData[]>{
-    return this.http.get<IDtoData[]>("https://bitcoinloggerapi.azurewebsites.net/LiveData/").pipe(
-      tap(data=>console.log('All: '+JSON.stringify(data))),
+    var uri =`${environment.apiurl}/LiveData`;
+    return this.http.get<IDtoData[]>(uri).pipe(
+      tap(data=>console.log(`All: ${JSON.stringify(data)}`)),
       catchError(this.handleError)
     );
   }
-
+  saveHistoryData(row: IDtoData, userid:number){
+    var uri =`${environment.apiurl}/HistoryData/${userid}`;
+    return this.http.post(uri, row).pipe(
+      tap(data=>console.log(`InsertedData: ${JSON.stringify(row)}`)),
+      catchError(this.handleError)
+    );
+  }
 
 
   private handleError(err : HttpErrorResponse){

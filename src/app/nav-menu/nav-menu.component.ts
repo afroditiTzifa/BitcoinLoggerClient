@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Globals } from '../globals';
 
 @Component({
   selector: 'app-nav-menu',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
+
+  constructor(private glb: Globals) {}
+
 
   collapse() {
     this.isExpanded = false;

@@ -1,25 +1,27 @@
 <header>
+ 
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" >
-      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"  [ngClass]="{ show: isExpanded }">
+      
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"  [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li  class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }" >
             <a class="nav-link text-light" [routerLink]="['/home']">Home</a>
           </li>
-          <li  class="nav-item" [routerLinkActive]="['link-active']" >
-            <a class="nav-link text-light" [routerLink]="['/login']">Login</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          <li *ngIf="this.glb.userid > 0" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-light" [routerLink]="['/live']" >Live</a>
-          </li>
-          
-          <li class="nav-item" [routerLinkActive]="['link-active']">
+          </li> 
+          <li *ngIf="this.glb.userid > 0" class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-light" [routerLink]="['/history']" >History</a>
           </li>
         </ul>
       </div>
+
   </nav>
 
 
+  <div *ngIf="this.glb.userid > 0" style="float:right; width:100px; text-align: center;">
+     <button style='font-size:12px'><a class='fas fa-user'></a></button>
+     <div><label> Hello,{{this.glb.username}}</label></div>
+  </div>
 
-  
 </header>
