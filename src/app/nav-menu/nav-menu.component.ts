@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Globals } from '../globals';
+import { IDtoUserData } from '../dto-user-data';
+
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,7 +10,8 @@ import { Globals } from '../globals';
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor(private glb: Globals) {}
+
+  constructor()  {}
 
 
   collapse() {
@@ -19,4 +21,5 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
 }

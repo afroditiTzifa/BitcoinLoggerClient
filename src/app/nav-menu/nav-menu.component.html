@@ -7,10 +7,10 @@
           <li  class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }" >
             <a class="nav-link text-light" [routerLink]="['/home']">Home</a>
           </li>
-          <li *ngIf="this.glb.userid > 0" class="nav-item" [routerLinkActive]="['link-active']">
+          <li  class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-light" [routerLink]="['/live']" >Live</a>
           </li> 
-          <li *ngIf="this.glb.userid > 0" class="nav-item" [routerLinkActive]="['link-active']">
+          <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-light" [routerLink]="['/history']" >History</a>
           </li>
         </ul>
@@ -18,10 +18,5 @@
 
   </nav>
 
-
-  <div *ngIf="this.glb.userid > 0" style="float:right; width:100px; text-align: center;">
-     <button style='font-size:12px'><a class='fas fa-user'></a></button>
-     <div><label> Hello,{{this.glb.username}}</label></div>
-  </div>
 
 </header>

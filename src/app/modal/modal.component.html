@@ -1,12 +1,6 @@
-<h1 mat-dialog-title></h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <input matInput {{data.errorMessage}}>
-  </mat-form-field>
+<div class="jw-modal">
+    <div class="jw-modal-body">
+        <ng-content></ng-content>
+    </div>
 </div>
-<!--
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No</button>
-  <button mat-button [mat-dialog-close]="data.email" cdkFocusInitial>Yes</button>
-</div>
--->
+<div class="jw-modal-background"></div>

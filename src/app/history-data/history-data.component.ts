@@ -3,27 +3,36 @@ import { IDtoData} from '../dto-data';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatSort } from '@angular/material';
 import { HistoryDataService } from './history-data.service';
-import { Globals } from '../globals';
+import { IDtoUserData } from '../dto-user-data';
+import { Router } from '@angular/router';
+
 
 @Component({
   templateUrl: './history-data.component.html'
 })
-export class HistoryDataComponent  implements OnInit{
+export class HistoryDataComponent  implements  OnInit {
   historyData: IDtoData[];
   displayedColumns: string[] = ['source', 'price', 'timestamp'];
   dataSource  = new MatTableDataSource(this.historyData);
+  userid : number;
+  username :string;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private srv: HistoryDataService, private glb: Globals)  { }
+  constructor(private srv: HistoryDataService, private router: Router)  {
+    var currentUser : IDtoUserData;
+    currentUser = JSON.parse (localStorage.getItem('currentUser'));
+    if (currentUser != null){
+      this.userid= currentUser.id;
+      this.username = currentUser.username;  
+    }   
+  }
 
 
   ngOnInit()
   {
-
-    console.log(this.glb.userid);
-    this.srv.getHistoryData(this.glb.userid).subscribe(
+    this.srv.getHistoryData(this.userid).subscribe(
       {
        next:response=> 
           { 
@@ -37,6 +46,7 @@ export class HistoryDataComponent  implements OnInit{
       );
 
   }
+  
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

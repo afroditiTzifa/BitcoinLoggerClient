@@ -1,7 +1,12 @@
 
-<div class="container-fluid">
+<div *ngIf="this.userid > 0" style="width:100% ;display:flex;">
+  <div style="position:absolute; right:0px; width:100px; text-align: center;">
+    <button style='font-size:12px'><a class='fas fa-user' [routerLink]="['/logout']" ></a></button>
+    <div><label> Hello,{{this.username}}</label></div>
+  </div>
+</div>
 
-
+<div class="container-fluid margin-top">
   <div class="mat-elevation-z2">
    
     <h3>Filter</h3>

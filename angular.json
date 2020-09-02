@@ -30,7 +30,10 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/hammerjs/hammer.js"
+
+            ]
           },
           "configurations": {
             "production": {

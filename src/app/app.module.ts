@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatInputModule, MatPaginatorModule,  MatSortModule, MatTableModule, MatFormFieldModule } from '@angular/material';
+import { MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatFormFieldModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
-import {Globals} from './globals';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { LiveDataComponent } from './live-data/live-data.component';
@@ -16,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ModalComponent } from './modal/modal.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ActivateGuard } from './activate-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,17 +27,19 @@ import { ModalComponent } from './modal/modal.component';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    ModalComponent
+    ModalComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent},
+      { path: 'logout', component: LogoutComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'history', component: HistoryDataComponent },
-      { path: 'live', component: LiveDataComponent },
+      { path: 'history', component: HistoryDataComponent, canActivate:[ActivateGuard]},
+      { path: 'live', component: LiveDataComponent, canActivate:[ActivateGuard] },
       { path:'', redirectTo: 'home', pathMatch: 'full'}
     ]),
     BrowserAnimationsModule,
@@ -46,12 +49,9 @@ import { ModalComponent } from './modal/modal.component';
     MatSortModule,
     MatFormFieldModule,
     MatCardModule,
-    MatDialogModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [Globals],
-  bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

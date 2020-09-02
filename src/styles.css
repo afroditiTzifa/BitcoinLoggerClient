@@ -52,3 +52,29 @@ table {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+jw-modal {
+  display: none;
+}
+
+.jw-modal-body {
+    padding: 20px;
+    background: #fff;
+    margin: 40px;
+}
+
+.jw-modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.75;
+    z-index: 900;
+    width:300px;
+}
+
+
+body.jw-modal-open {
+  overflow: hidden;
+}

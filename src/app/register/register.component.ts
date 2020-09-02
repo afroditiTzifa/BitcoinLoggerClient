@@ -10,19 +10,13 @@ import { IDtoUserData} from '../dto-user-data';
 export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
-    loading = false;
     submitted = false;
 
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
         private srv: RegisterService
-    ) { 
-        
-        //if (this.authenticationService.currentUserValue) { 
-        //    this.router.navigate(['/']);
-        //}
-    }
+    ) {  }
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
@@ -40,15 +34,11 @@ export class RegisterComponent implements OnInit {
 
         if (this.registerForm.invalid) { return; }
 
-        this.loading = true;
         this.srv.register(this.registerForm.value).subscribe(
           {
-            error: err=> 
-            {
-              this.loading = false;
-              console.log(err);
-            }
+            error: err=> console.log(err)
           });
+
     }
 
 }
