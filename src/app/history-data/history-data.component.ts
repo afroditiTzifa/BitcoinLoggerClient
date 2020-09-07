@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IDtoData} from '../dto-data';
+import { IDtoData} from '../common/dto-data.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatSort } from '@angular/material';
 import { HistoryDataService } from './history-data.service';
-import { IDtoUserData } from '../dto-user-data';
-import { Router } from '@angular/router';
+import { AuthService } from '../user/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,25 +14,20 @@ export class HistoryDataComponent  implements  OnInit {
   historyData: IDtoData[];
   displayedColumns: string[] = ['source', 'price', 'timestamp'];
   dataSource  = new MatTableDataSource(this.historyData);
-  userid : number;
-  username :string;
+
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private srv: HistoryDataService, private router: Router)  {
-    var currentUser : IDtoUserData;
-    currentUser = JSON.parse (localStorage.getItem('currentUser'));
-    if (currentUser != null){
-      this.userid= currentUser.id;
-      this.username = currentUser.username;  
-    }   
-  }
+  constructor(
+    private srv: HistoryDataService, 
+    private auth: AuthService, 
+    private toastr: ToastrService)  {  }
 
 
   ngOnInit()
   {
-    this.srv.getHistoryData(this.userid).subscribe(
+    this.srv.getHistoryData(this.auth.currentUser.id).subscribe(
       {
        next:response=> 
           { 
@@ -41,7 +36,11 @@ export class HistoryDataComponent  implements  OnInit {
             this.dataSource.paginator =this.paginator;
             this.dataSource.sort = this.sort;
           }, 
-          error: err=>console.log(err),
+          error: err=>
+          {
+            console.log(`Error getHistoryData: ${JSON.stringify(err)}`); 
+            this.toastr.error('An error occurred. Please try again later');
+          },
        }
       );
 

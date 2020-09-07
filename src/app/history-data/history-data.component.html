@@ -1,15 +1,8 @@
 
-<div *ngIf="this.userid > 0" style="width:100% ;display:flex;">
-  <div style="position:absolute; right:0px; width:100px; text-align: center;">
-    <button style='font-size:12px'><a class='fas fa-user' [routerLink]="['/logout']" ></a></button>
-    <div><label> Hello,{{this.username}}</label></div>
-  </div>
-</div>
 
-<div class="container-fluid margin-top">
   <div class="mat-elevation-z2">
    
-    <h3>Filter</h3>
+  <h3>Filter</h3>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
@@ -38,6 +31,6 @@
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  
   </div>
 
-</div>

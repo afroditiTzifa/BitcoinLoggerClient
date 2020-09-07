@@ -1,0 +1,19 @@
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <em *ngIf="f.username.touched && f.username.errors?.required" class="is-invalid float-right">Required</em>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" />
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <em *ngIf="f.password.touched && f.password.errors?.required" class="is-invalid float-right">Required</em>
+        <em *ngIf="f.password.touched && f.password.errors?.minlength" class="is-invalid float-right">Must be at least 4 characters</em>
+        <input type="password" formControlName="password" autocomplete="off" class="form-control" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+    </div>
+    <div class="form-group">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+        <a [routerLink]="['/register']" class="btn">Register</a>
+    </div>
+</form>
+

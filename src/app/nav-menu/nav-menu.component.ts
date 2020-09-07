@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
-import { IDtoUserData } from '../dto-user-data';
+import { AuthService } from '../user/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  styles: [".margin-left {margin-left:250px;}", 
+            ".current-user-span {display:block; padding:0px}" ,
+            ".current-user-link {margin-left:5px; text-align: center;}"
+          ]
 })
 export class NavMenuComponent {
   isExpanded = false;
 
-
-  constructor()  {}
-
+  constructor(private auth: AuthService, private router:Router)  {}
 
   collapse() {
     this.isExpanded = false;
@@ -20,6 +22,13 @@ export class NavMenuComponent {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  logout()
+  {
+    this.auth.currentUser = null;
+    localStorage.removeItem('currentUser');
+    this.router.navigateByUrl('/home');
   }
 
 }

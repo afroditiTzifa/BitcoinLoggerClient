@@ -1,27 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import { IDtoUserData } from '../dto-user-data';
+import { Component} from '@angular/core';
 
 @Component({
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent{
 
-  userid : number;
-  username :string
 
-  constructor(private router : Router) 
-  { 
-    var currentUser : IDtoUserData;
-    currentUser = JSON.parse (localStorage.getItem('currentUser'));
-    if (currentUser != null){
-      this.userid= currentUser.id;
-      this.username = currentUser.username;  
-    } 
-  }
+  constructor() { }
 
-  ngOnInit() {
-  }
 
 
 }

@@ -1,22 +1,12 @@
-<div *ngIf="this.userid > 0" style="width:100% ;display:flex;">
-  <div style="position:absolute; right:0px; width:100px; text-align: center;">
-    <button style='font-size:12px'><a class='fas fa-user' [routerLink]="['/logout']" ></a></button>
-    <div><label> Hello,{{this.username}}</label></div>
-  </div>
-</div>
 
-<div class="container-fluid margin-top">
+<div>
     <p>
         Bitcoin is a cryptocurrency. It is a decentralized digital currency without a central bank or single administrator that can be sent from user to user on the peer-to-peer bitcoin network without the need for intermediaries.
         Transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain. Bitcoin was invented in 2008 by an unknown person or group of people using the name Satoshi Nakamoto and started in 2009 when its source code was released as open-source software.
     </p>
 
     <p>
-      <span *ngIf="this.userid == undefined ">
-        Please  <button style='font-size:24px'><a class='fas fa-user' [routerLink]="['/login']">Login</a></button> to acess 
-      </span>
-      <span *ngIf="this.userid > 0">Access </span>
-       the most accurate Bitcoin real time price by two popular crypto exchanges; Bitstamp and GDAX.  
+     Access the most accurate Bitcoin real time price by two popular crypto exchanges; Bitstamp and GDAX.  
    </p>
  
 </div>

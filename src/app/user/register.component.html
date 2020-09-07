@@ -1,0 +1,28 @@
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="firstname">First Name</label>
+        <em *ngIf="f.firstname.touched && f.firstname.errors?.required" class="is-invalid float-right">Required</em>
+        <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid': f.firstname.touched && f.firstname.errors }" />   
+    </div>
+    <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <em *ngIf="f.lastname.touched && f.lastname.errors?.required" class="is-invalid float-right">Required</em>
+        <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid':  f.lastname.touched && f.lastname.errors }" /> 
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <em *ngIf="f.username.touched && f.username.errors?.required" class="is-invalid float-right">Required</em>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': f.username.touched && f.username.errors }" /> 
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <em *ngIf="f.password.touched && f.password.errors?.required" class="is-invalid float-right">Required</em>
+        <em *ngIf="f.password.touched && f.password.errors?.minlength" class="is-invalid float-right">Must be at least 4 characters</em>
+        <input type="password" formControlName="password" autocomplete="off" class="form-control" [ngClass]="{ 'is-invalid': f.password.touched && f.password.errors }" />
+    </div>
+    <div class="form-group">
+        <button type="submit" [disabled] ="registerForm.invalid" class="btn btn-primary">Save</button>
+         <a class="btn" (click)="cancel()">Cancel</a>
+    </div>
+</form>
