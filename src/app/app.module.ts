@@ -15,6 +15,7 @@ import { HistoryDataComponent } from './history-data/history-data.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './user/register.component';
 import { LoginComponent } from './user/login.component';
+import {CryptoExchangeComponent} from './live-data/crypto-exchange.component';
 import { ActivateGuard } from './common/activate-guard.service';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ActivateGuard } from './common/activate-guard.service';
     AppComponent,
     NavMenuComponent,
     LiveDataComponent,
+    CryptoExchangeComponent,
     HistoryDataComponent,
     HomeComponent,
     RegisterComponent,

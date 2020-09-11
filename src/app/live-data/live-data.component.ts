@@ -1,18 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { IDtoData} from '../common/dto-data.model';
+import { IBitcoinPriceDto} from '../common/bitcoin-price-dto.model';
 import { LiveDataService } from './live-data.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router} from '@angular/router';
 import { AuthService } from '../user/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { ICurrencyPairDto } from '../common/currency-pair-dto.model';
 
 @Component({
-  templateUrl: './live-data.component.html',
+  template: ` <div class="dropdown">
+                 Currency Pair
+                 <select class="dropdown-content"  [(ngModel)]="selectedLevel" (change)="selected()"> 
+                   <option *ngFor="let item of currencyPairs" [value]="item.id" [selected]="selected">{{item.description}}</option>
+                    </select>
+              </div>
+              <div *ngFor="let row of liveData">
+                  <crypto-exchange [row]=row (clickEvent)="handleClickEvent($event)"></crypto-exchange>
+               </div>`,
+ styles: [".dropdown {margin-bottom:40px;}",
+          ".dropdown-content {background-color:lightgray; color:black; min-width:160px}"
+         ]
+
 })
 
 export class LiveDataComponent implements OnInit {
    
-  liveData: IDtoData[];
+  liveData: IBitcoinPriceDto[];
+  currencyPairs: ICurrencyPairDto[];
+  selectedLevel = 1;
+ 
+
 
   constructor(
     private srv: LiveDataService, 
@@ -20,9 +36,8 @@ export class LiveDataComponent implements OnInit {
     private auth: AuthService, 
     private toastr:ToastrService) { } 
   
-
-  ngOnInit(){      
-    this.srv.getLiveData().subscribe(
+  getLiveData(){
+    this.srv.getLiveData(this.selectedLevel).subscribe(
       {
         next:response => this.liveData = response, 
         error: err => 
@@ -34,8 +49,19 @@ export class LiveDataComponent implements OnInit {
       ); 
   }
 
+  ngOnInit(){    
+    const promise = this.srv.getCurrencyPairs();
+    promise.then((response)=>{
+       this.currencyPairs = response;
+       this.getLiveData();
+    }).catch((err)=>{
+      console.log(`Error getCurrencyPairs: ${JSON.stringify(err)}`);
+    }); 
+    this.getLiveData();
+  }
 
-  onClick(row: IDtoData){
+
+  handleClickEvent(row: IBitcoinPriceDto){
     this.srv.saveHistoryData(row, this.auth.currentUser.id).subscribe(
       {
         next: response=> this.router.navigateByUrl('/history') , 
@@ -46,7 +72,11 @@ export class LiveDataComponent implements OnInit {
         },
       });
         
-  }  
+  } 
+  
+  selected(){
+    this.getLiveData();
+  }
 
 
 }

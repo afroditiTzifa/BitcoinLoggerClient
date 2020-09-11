@@ -1,0 +1,17 @@
+
+<div class="outer-box">
+    <div class="inner-box">
+        <div class="box-header">{{ row.source }}</div>
+        <div>Last Price: {{ row.lastPrice | number: '1.2-2' }}</div>
+        <div>Last 24h High Price: {{ row.highPrice | number: '1.2-2' }}</div>
+        <div>Last 24h Low Price: {{ row.lowPrice | number: '1.2-2' }}</div>
+        <div>First price of the day: {{ row.openPrice | number: '1.2-2' }}</div>
+        <div>Last 24 hours volume: {{ row.volume | number: '1.2-2' }}</div>
+        <div>Highest buy order: {{ row.bid | number: '1.2-2' }}</div>
+        <div>Lowest sell order: {{ row.ask | number: '1.2-2' }}</div>
+        <div class="box-button">
+            <button  class="btn-primary" (click)="onClick(row)" >Save To History</button> 
+        </div>
+        
+    </div>
+  </div>

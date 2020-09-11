@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IDtoUserData } from './dto-user-data.model';
+import { IUserDTO } from './user-dto.model';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 
 @Injectable({providedIn:'root'})
 export class AuthService{
 
-    currentUser: IDtoUserData;
+    currentUser: IUserDTO;
 
     constructor(private http:HttpClient) { }
 
@@ -18,9 +18,9 @@ export class AuthService{
         return this.currentUser?.id > 0;
     }
     
-    loginUser(username:string, password:string) : Observable<IDtoUserData>{
+    loginUser(username:string, password:string) : Observable<IUserDTO>{
         var uri = `${environment.apiurl}/UserData/${username}/${password}`;
-        return this.http.get<IDtoUserData>(uri).pipe(
+        return this.http.get<IUserDTO>(uri).pipe(
             tap(data => {
                 this.currentUser = data; 
                 localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
@@ -30,7 +30,7 @@ export class AuthService{
     }
     
 
-    addUser(userData:IDtoUserData ) {
+    addUser(userData:IUserDTO ) {
         var uri =`${environment.apiurl}/UserData`;          
         return this.http.post(uri, userData).pipe(
             tap(data => {
@@ -41,7 +41,7 @@ export class AuthService{
         );
       }
 
-    updateUser(userData:IDtoUserData ) {
+    updateUser(userData:IUserDTO ) {
         var uri =`${environment.apiurl}/UserData`;    
         userData.id = this.currentUser.id;    
         return this.http.put(uri, userData).pipe(

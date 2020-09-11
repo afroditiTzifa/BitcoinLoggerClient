@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IDtoData} from '../common/dto-data.model';
+import { IBitcoinPriceDto} from '../common/bitcoin-price-dto.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatSort } from '@angular/material';
 import { HistoryDataService } from './history-data.service';
@@ -11,8 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './history-data.component.html'
 })
 export class HistoryDataComponent  implements  OnInit {
-  historyData: IDtoData[];
-  displayedColumns: string[] = ['source', 'price', 'timestamp'];
+  historyData: IBitcoinPriceDto[];
+  displayedColumns: string[] = ['source', 'currencyPair', 'timestamp', 'lastPrice', 'highPrice', 'lowPrice', 'openPrice', 'volume', 'bid', 'ask'];
   dataSource  = new MatTableDataSource(this.historyData);
 
 
