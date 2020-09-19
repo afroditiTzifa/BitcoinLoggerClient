@@ -16,7 +16,6 @@ export class HistoryDataService  {
 
   getHistoryData(userid : number): Observable<IBitcoinPriceDto[]>{
     var uri =`${environment.apiurl}/HistoryData/${userid}`;
-    console.log(uri);
     return this.http.get<IBitcoinPriceDto[]>(uri).pipe(
       tap(data => console.log(`getHistoryData: ${JSON.stringify(data)}`))
     );

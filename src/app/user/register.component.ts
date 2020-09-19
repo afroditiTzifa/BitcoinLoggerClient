@@ -31,18 +31,29 @@ export class RegisterComponent implements OnInit {
 
 
     onSubmit() {
-
-      const promise = this.auth.validUsename(this.f.username.value);
-
-      promise.then((valid)=>{ 
+      
+      if (this.auth.isAuthenticated())
+        this.auth.updateUser(this.registerForm.value).subscribe(
+        { 
+          next: response => this.router.navigateByUrl('/home'),
+          error: err=> 
+          {
+            console.log(`Error updateUser: ${JSON.stringify(err)}`); 
+            this.toastr.error('An error occurred. Please try again later')
+          },
+        });
+      else{
+        const promise = this.auth.validUsename(this.f.username.value);
+        promise.then((valid)=>{ 
         if (!valid){
           this.toastr.error('The username already exists. Please use a different username');
           return false;
         }
-        this.submit();
-      }).catch((err)=>{
-        console.log(`Error validUsername: ${JSON.stringify(err)}`);
-      });   
+        this.addUser();
+        }).catch((err)=>{
+          console.log(`Error validUsername: ${JSON.stringify(err)}`);
+        });   
+      }
        
     }
 
@@ -54,27 +65,16 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl('/login');
     }
 
-    submit(){
-      if (this.auth.isAuthenticated())
-          this.auth.updateUser(this.registerForm.value).subscribe(
-            { 
-              next: response => this.router.navigateByUrl('/home'),
-              error: err=> 
-              {
-                console.log(`Error updateUser: ${JSON.stringify(err)}`); 
-                this.toastr.error('An error occurred. Please try again later')
-              },
-            });
-        else
-          this.auth.addUser(this.registerForm.value).subscribe(
-            {
-              next: response => this.router.navigateByUrl('/home'),
-              error: err=> 
-              {
-                console.log(`Error addUser: ${JSON.stringify(err)}`); 
-                this.toastr.error('An error occurred. Please try again later')
-              },
-            });
+    addUser(){ 
+      this.auth.addUser(this.registerForm.value).subscribe(
+       {
+          next: response => this.router.navigateByUrl('/home'),
+          error: err=> 
+          {
+            console.log(`Error addUser: ${JSON.stringify(err)}`); 
+            this.toastr.error('An error occurred. Please try again later')
+          },
+       });
     }
 
 
