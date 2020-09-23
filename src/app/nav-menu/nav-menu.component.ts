@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor(private auth: AuthService, private router:Router)  {}
+  constructor(public auth: AuthService, private router:Router)  {}
 
   collapse() {
     this.isExpanded = false;
