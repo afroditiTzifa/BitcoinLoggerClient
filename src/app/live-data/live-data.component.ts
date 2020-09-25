@@ -7,15 +7,17 @@ import { ToastrService } from 'ngx-toastr';
 import { ICurrencyPairDto } from '../common/currency-pair-dto.model';
 
 @Component({
-  template: ` <div class="dropdown">
-                 Currency Pair
-                 <select class="dropdown-content"  [(ngModel)]="selectedLevel" (change)="selected()"> 
-                   <option *ngFor="let item of currencyPairs" [value]="item.id" [selected]="selected">{{item.description}}</option>
-                    </select>
-              </div>
-              <div *ngFor="let row of liveData">
-                  <crypto-exchange [row]=row (clickEvent)="handleClickEvent($event)"></crypto-exchange>
-               </div>`,
+  template: ` 
+                <div class="dropdown">
+                  Currency Pair
+                  <select class="dropdown-content"  [(ngModel)]="selectedLevel" (change)="selected()"> 
+                    <option *ngFor="let item of currencyPairs" [value]="item.id" [selected]="selected">{{item.description}}</option>
+                      </select>
+                </div>
+                <div *ngFor="let row of liveData">
+                    <crypto-exchange [row]=row (clickEvent)="handleClickEvent($event)"></crypto-exchange>
+                </div>
+              `,
  styles: [".dropdown {margin-bottom:40px;}",
           ".dropdown-content {background-color:lightgray; color:black; min-width:160px}"
          ]

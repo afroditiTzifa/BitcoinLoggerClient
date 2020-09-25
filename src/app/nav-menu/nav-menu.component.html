@@ -2,14 +2,19 @@
  
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" >
       
+    <div class="width40">
+         <a class="navbar-brand logo" href="#">Bitcoin Logger</a>
+    </div>
+   
+    <div class="width35">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="isExpanded = !isExpanded">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <a class="navbar-brand logo" href="#">Bitcoin Logger</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="navbar-collapse collapse margin-left" [ngClass]="{ show: isExpanded }">
-        <ul class="navbar-nav flex-grow">
+      <div  class="navbar-collapse collapse" [ngClass]="{ show: isExpanded }">
+        <ul  class="navbar-nav flex-grow">
           <li  class="nav-item" [routerLinkActive]="['link-active']" >
             <a class="nav-link text-light" [routerLink]="['/home']">Home</a>
           </li>
@@ -20,25 +25,31 @@
             <a class="nav-link text-light" [routerLink]="['/history']" >History</a> 
           </li>
         </ul>
-    </div>
-
-    <div class="nav navbar-right">
-        <ul class="navbar-nav ">
-          <li  *ngIf="!this.auth.isAuthenticated() " class="nav-item" [routerLinkActive]="['link-active']" >
-            <a class="nav-link text-light" [routerLink]="['/login']">Login</a>
-          </li>
-          <li *ngIf="this.auth.isAuthenticated()" class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light fas fa-user current-user-link" [routerLink]="['/register']" >
-              <span class="current-user-span">Welcome,{{this.auth.currentUser.username}}</span> 
-            </a>
-          </li>
-          <li *ngIf="this.auth.isAuthenticated()" class="nav-item"> 
-            <button class="btn btn-link nav-link"  (click)="logout()">Logout</button>
-          </li>
-        </ul>    
+    
       </div>
 
+     </div>
+
+     <div class="width25">
+      <ul  class="navbar-nav">
+        <li  *ngIf="!this.auth.isAuthenticated() " class="nav-item" [routerLinkActive]="['link-active']" >
+          <a class="nav-link text-light" [routerLink]="['/login']">Login</a>
+        </li>
+        <li *ngIf="this.auth.isAuthenticated()" class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-light fas fa-user current-user-link" [routerLink]="['/register']" >
+            <span class="current-user-span">Welcome,{{this.auth.currentUser.username}}</span> 
+          </a>
+        </li>
+        <li *ngIf="this.auth.isAuthenticated()" class="nav-item"> 
+          <button class="btn btn-link nav-link"  (click)="logout()">Logout</button>
+        </li>
+      </ul>    
+    </div>
+
   </nav> 
+
+   
+
 
 
 </header>
