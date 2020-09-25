@@ -1,6 +1,6 @@
 # BitcoinLoggerClient
-The application is an Angular app that presents accurate Bitcoin real time price by two popular crypto exchanges; Bitstamp and GDAX.
-https://bitcoin-logger.herokuapp.com/home
+The application is an Angular App that presents Bitcoin real time price by two popular crypto exchanges; Bitstamp and GDAX.
+Available at https://bitcoin-logger.herokuapp.com/home
 
 
 ## Getting Started
