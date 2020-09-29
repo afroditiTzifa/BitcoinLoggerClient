@@ -11,7 +11,7 @@ import { ICurrencyPairDto } from '../common/currency-pair-dto.model';
                 <div class="dropdown">
                   Currency Pair
                   <select class="dropdown-content"  [(ngModel)]="selectedLevel" (change)="selected()"> 
-                    <option *ngFor="let item of currencyPairs" [value]="item.id" [selected]="selected">{{item.description}}</option>
+                    <option *ngFor="let item of currencyPairs" [ngValue]="item.id">{{item.description}}</option>
                       </select>
                 </div>
                 <div *ngFor="let row of liveData">
