@@ -13,6 +13,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
+.container-fluid {
+  padding: 0px;
+}
+
 a {
   color: #424242;
 }
