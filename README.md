@@ -1,27 +1,14 @@
 # BitcoinLoggerClient
+This is an Angular8 App consuming .Net Core Api.<br/>
+The application fetches Bitcoin prices by two popular crypto exchanges; Bitstamp and GDAX for 4 different Currency Pairs: BTC/USD, BTC/EUR, BTC-GBP and BTC/USDC and stores them locally.<br/>
+You will find a pushished version in https://bitcoin-logger.herokuapp.com.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The easiest way to use these samples without using Git is to download the zip file containing the current version. You can then unzip the entire archive and use Visual Studio Code to run.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Authors
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* **Afroditi Tzifa** - (https://github.com/afroditiTzifa)
